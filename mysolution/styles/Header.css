@@ -1,0 +1,42 @@
+.App-header{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    background-color: #34a3d7;
+    color: white;
+    height: 9.9rem;
+    padding-top: 0.05rem;
+}
+
+.App-title {
+    font-size: 2.4rem;
+    font-weight: 500;
+    position: relative;
+    top: -7px;/*?*/
+   
+}
+ _:-ms-fullscreen, :root .App-title {top: -110px}
+.App-title .gift{
+    width: 2.5rem;
+    margin-right: 0.5rem;
+    position: relative;
+
+}
+ _:-ms-fullscreen, :root .App-title .gift {top: 55px}
+
+ @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+
+   .App-title {top :-110px};/* gift is moving up...*/
+}
+
+.App-title svg.gift path{
+    fill: white;
+}
+.App-subtitle{
+    font-size: 0.92rem;
+    margin: auto;
+    width: 100%;
+    position: relative;
+    top: 1.2rem;
+    color: #f4f4f4;
+}

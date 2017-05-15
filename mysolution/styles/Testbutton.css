@@ -1,0 +1,33 @@
+
+button svg path{
+    fill: white;
+}
+
+button.action-button{
+    height: 50px;
+    border: 0px;
+    color: #FFF;
+    font-size: 20px;
+    width: 500px;
+}
+button.ch-blue{
+    background-color: #34a3d7;
+}
+
+button.ch-red {/*primary?*/
+    background-color: #c32451;
+}
+.action-button-text{
+    display: inline-block;
+    margin:0 auto;
+    line-height: 40px;
+}
+.action-button-svg{
+    float:right;
+    position: relative;
+    top: 5px;
+}
+.action-button-svg.refresh svg{
+   width: 2rem;
+   
+}

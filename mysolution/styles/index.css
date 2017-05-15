@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: ABeZeh;
+  background: #f2f5f7;
+  text-align: center;
+  font-size: 16px;
+}
+
+input {
+  font-family: ABeZeh;
+}
+
+.ellipses{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.boxshades{
+  -moz-box-shadow:    0px 1px 2px #adadad;
+  -webkit-box-shadow: 0px 1px 2px #adadad;
+  box-shadow:        0px 1px 2px #adadad;
+}

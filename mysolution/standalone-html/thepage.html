@@ -1,0 +1,376 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../public/favicon.ico">
+    <link rel="stylesheet" href="../public/fonts.css">
+    <meta name="author" content="Alexander Baars">
+    <meta name="description" content="front-end challenge for snappet">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/Header.css">
+    <link rel="stylesheet" href="../styles/Container.css">
+    <link rel="stylesheet" href="../styles/ContainerHeader.css">
+    <link rel="stylesheet" href="../styles/ContainerBody.css">
+
+    <title>Snappet React Challenge App</title>
+   <script type="text/javascript">
+    var mathgrade1 = [{
+        objective: '123. Doortellen en terugtellen, met sprongen van 3 of meer dan 10 en zelf meer dan 100',
+        number: 123,
+        done: 16,
+        todo: 24,
+        optional: 0
+    },
+    {
+        objective: '101. Splitsend vermenigvuldigen (6 x 32 = 6837) En nog meer rekenen dan je zou willen',
+        number: 101,
+        done: 10,
+        todo: 27,
+        optional: 3
+    },
+    {
+        objective: '121. Doortellen en terugtellen, met sprongen van 1, 2, 4 en 6',
+        number: 121,
+        done: 3,
+        todo: 34,
+        optional: 3
+    }];
+
+    var mathgrade2 = [{
+        objective: '223. Kwadraat afsplitsen, met sprongen van 3 of meer dan 10 en zelf meer dan 100',
+        number: 223,
+        done: 3,
+        todo: 34,
+        optional: 3
+    },
+    {
+        objective: '201. Splitsend vermenigvuldigen (6 x 32 = 6837) En nog meer rekenen dan je zou willen',
+        number: 201,
+        done: 10,
+        todo: 27,
+        optional: 3
+    },
+    {
+        objective: '221. Doortellen en terugtellen, met sprongen van 1, 2, 4 en 6',
+        number: 121,
+        done: 3,
+        todo: 34,
+        optional: 3
+    }]
+    var mathgrade3 = [{
+        objective: '323. Vierendelen, met sprongen van 3 of meer dan 10 en zelf meer dan 100',
+        number: 323,
+        done: 3,
+        todo: 34,
+        optional: 3
+    },
+    {
+        objective: '301. Fatsoenlijk vermenigvuldigen (6 x 32 = 6837) En nog meer rekenen dan je zou willen',
+        number: 301,
+        done: 10,
+        todo: 27,
+        optional: 3
+    },
+    {
+        objective: '321. Doortellen en terugtellen, met sprongen van 1, 2, 4 en 6',
+        number: 321,
+        done: 3,
+        todo: 34,
+        optional: 3
+    }];
+
+    var grades = [mathgrade1, mathgrade2, mathgrade3]
+
+    var datatree = {
+        getTree : function() {
+            return grades
+        },
+        filterTree : function(filter) {
+            return grades[filter]
+        }
+    };
+
+    function getCircles(type, count){
+        var circles = [];
+        for (var i = 0; i < count; i++) {
+            circles += '<div class="circle '+type+'"></div>';
+        }
+        return circles;
+    };
+  
+    function getData(){
+        var value = document.getElementById("gradeselector").value;
+        
+        var currentCourse = grades[value];
+        var rows='';
+       
+        
+        for(var c=0;c<currentCourse.length;c++){
+            var objective = currentCourse[c];
+            var objectiveText= objective['objective'];
+            var circles = '';
+            circles += getCircles('done',objective['done']);
+            circles += getCircles('todo',objective['todo']);
+            circles += getCircles('optional',objective['optional']);
+            rows += createRow(objectiveText, circles);
+        }
+
+        document.getElementById("myrows").innerHTML = rows;
+    }
+
+    function createRow(objectiveText, circles){
+        var row = '<div class="table-row"><div class="firstcolumn column"><div class="objectiveText cell">';
+            row += objectiveText;
+            row += '</div></div><div class="secondcolumn column"><div class="objectiveProgress cell">';
+            row += circles;
+            row += '</div></div><div class="thirdcolumn column"><button type="button" class="objectiveDetailsButton boxshades" alt="Show Details"><span class="details-button-text">Show details</span></button></div></div>';
+        
+        return row;
+    }
+   </script>
+</head>
+
+    <body>
+        <div id="root">
+            <div data-reactroot="">
+                <div class="App-header">
+                    <div class="App-subtitle ellipses">Dashboard / Snappet /</div>
+                    <h1 class="App-title ellipses">
+                        <span>
+                            <svg class="gift" id="435d0623-bc25-4981-8ea3-94bf2274b9d2" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                <title>gift</title>
+                                <path d="M22.42,10.42a7.67,7.67,0,0,0,3.77-2.5,4.45,4.45,0,0,0,.17-4.37c-.82-1.94-2-2.35-2.8-2.35-1.59,0-3.37,1.49-5.45,4.55A40.34,40.34,0,0,0,16,9.26a40.66,40.66,0,0,0-2.1-3.51C11.82,2.69,10,1.2,8.45,1.2c-.82,0-2,.41-2.8,2.35a4.4,4.4,0,0,0,.17,4.34,7.71,7.71,0,0,0,3.75,2.53M7.22,6.94a2.77,2.77,0,0,1,0-2.74c.37-.87.79-1.32,1.25-1.32,1.53,0,4.08,3.53,5.77,6.61C11.9,9.31,8.36,8.67,7.22,6.94ZM23.55,2.88c.46,0,.88.44,1.25,1.32a2.77,2.77,0,0,1,0,2.74c-1.14,1.72-4.69,2.37-7,2.55C19.48,6.42,22,2.88,23.55,2.88Z"></path>
+                                <path d="M17.7,18.8h8.6V12.2a2,2,0,0,0-2-2H17.7Z"></path>
+                                <path d="M14.3,18.8V10.2H7.7a2,2,0,0,0-2,2v6.6Z"></path>
+                                <path d="M17.7,22.2v8.6h6.6a2,2,0,0,0,2-2V22.2Z"></path>
+                                <path d="M14.3,22.2H5.7v6.6a2,2,0,0,0,2,2h6.6Z"></path>
+                            </svg>
+                        </span>
+                        Front-End Challenge
+                    </h1>
+                </div>
+                <div class="ch-container">
+                    <div class="ch-container-header">
+                        <div class="toggle-drop">
+                            <div class="toggle">
+                                <a href="#" id="balls" class="togglebutton leftbutton active">
+                                    <img class="balls" src="../public/icons/balls.svg" alt="balls?">
+                                </a>
+                                <a href="#" id="person" class="togglebutton rightbutton notactive">
+                                    <img class="person" src="../public/icons/person.svg" alt="about me">
+                                </a>
+                            </div>
+                            <select id='gradeselector' class="dropdown button boxshades" id="dropdown" style="background-image: url('../public/icons/down.svg');" onchange="getData()">
+                                <option value="0">Math Grade 1</option>
+                                <option value="1">Math Grade 2</option>
+                                <option value="2">Math Grade 3</option>
+                            </select>
+                        </div>
+                        <div class="flexspace"></div>
+                        <button class="button action-button ch-blue" type="button">
+                            <div class="action-button-container">
+                                <div class="action-button-text">Add learning objective</div>
+                                <div class="add-objective action-button-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                        <title>Plus</title>
+                                        <g id="6f243fd7-c556-47e1-8f68-0331adaf55b1" data-name="Layer 2">
+                                            <g id="2eca55ae-b0da-4acb-a077-deef613d2c13" data-name="path102">
+                                                <path d="M18.11,28.42c0-3.81,0-6.63,0-10.31H28.42c2.72,0,2.72-4.22,0-4.22H18.11V3.58c0-2.72-4.22-2.72-4.22,0,0,3.81,0,6.63,0,10.31H3.58c-2.72,0-2.72,4.22,0,4.22H13.89V28.42C13.89,31.14,18.11,31.14,18.11,28.42Z"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="button action-button ch-red" type="button">
+                            <div class="action-button-container">
+                                <div class="action-button-text">Automatic update</div>
+                                <div class="refresh action-button-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                                        <title>Refresh</title>
+                                        <g id="cad83917-f4af-40e8-a5a7-6e4782600ab2" data-name="Layer 2">
+                                            <path d="M7.53,7.85A12,12,0,0,1,22.37,6.17l1.91-2.25a.67.67,0,0,1,1.17.32l1.55,7a.67.67,0,0,1-.67.79l-7.19-.39a.67.67,0,0,1-.51-1.11l1.71-2A8.9,8.9,0,1,0,24.89,17a1.54,1.54,0,0,1,3.08.22A12,12,0,1,1,7.53,7.85Z"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                </div>
+                <div class="ch-container-body">
+                    <div class="ch-container-body-table">
+                        <div class="table-head">
+                            <div class="firstcolumn textHeader">
+                                <div class="cell">
+                                    Learning Objective
+                                    <svg id="4277e692-56ed-4859-b091-d691c1a257d8" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 32 32">
+                                        <title>Down</title>
+                                        <path d="M27.78,9.51a2,2,0,0,0-2.85,0L16,18.45l-8.86-9a2,2,0,0,0-2.85,0,2,2,0,0,0,0,2.85L14.61,22.58a2,2,0,0,0,2.85,0L27.78,12.26a2,2,0,0,0,0-2.75Z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="secondcolumn textHeader">
+                                <div class="cell">Pupils</div>
+                            </div>
+                            <div class="thirdcolumn column"></div>
+                        </div>
+                        <div id='myrows'>
+                            <div class="table-row">
+                                <div class="firstcolumn column">
+                                    <div class="objectiveText cell">123. Doortellen en terugtellen, met sprongen van 3 of meer dan 10 en zelf meer dan 100</div>
+                                </div>
+                                <div class="secondcolumn column">
+                                    <div class="objectiveProgress cell">
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                    </div>
+                                </div>
+                                <div class="thirdcolumn column"><button type="button" class="objectiveDetailsButton boxshades" alt="Show Details"><span class="details-button-text">Show details</span></button></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="firstcolumn column">
+                                    <div class="objectiveText cell">101. Splitsend vermenigvuldigen (6 x 32 = 6837) En nog meer rekenen dan je zou willen</div>
+                                </div>
+                                <div class="secondcolumn column">
+                                    <div class="objectiveProgress cell">
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle optional"></div>
+                                        <div class="circle optional"></div>
+                                        <div class="circle optional"></div>
+                                    </div>
+                                </div>
+                                <div class="thirdcolumn column"><button type="button" class="objectiveDetailsButton boxshades" alt="Show Details"><span class="details-button-text">Show details</span></button></div>
+                            </div>
+                            <div class="table-row">
+                                <div class="firstcolumn column">
+                                    <div class="objectiveText cell">121. Doortellen en terugtellen, met sprongen van 1, 2, 4 en 6</div>
+                                </div>
+                                <div class="secondcolumn column">
+                                    <div class="objectiveProgress cell">
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle done"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle todo"></div>
+                                        <div class="circle optional"></div>
+                                        <div class="circle optional"></div>
+                                        <div class="circle optional"></div>
+                                    </div>
+                                </div>
+                                <div class="thirdcolumn column"><button type="button" class="objectiveDetailsButton boxshades" alt="Show Details"><span class="details-button-text">Show details</span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
